@@ -2,7 +2,7 @@
 <html lang="uk">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>MedSpace — UI/UX Prototype</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -386,6 +386,450 @@
     <nav class="nav"><div class="logo">Med<span>Space</span></div><ul class="links"><li><a class="active">Реєстрація пацієнта</a></li></ul><div class="navright"><a class="btn outline" data-screen-link="register">Назад</a></div></nav>
     <section class="section"><div class="container" style="max-width:920px"><div class="label">Акаунт користувача</div><h2 class="title">Реєстрація пацієнта</h2><p class="sub">Створіть профіль, щоб швидко бронювати консультації, зберігати медичні записи та отримувати персональні рекомендації лікарів.</p><section class="panel" style="margin-top:28px"><div class="form-grid"><div class="field"><label for="patient-name">ПІБ пацієнта</label><input id="patient-name" class="input" placeholder="Ірина Петренко"></div><div class="field"><label for="patient-phone">Телефон</label><input id="patient-phone" class="input" placeholder="+380 XX XXX XX XX"></div><div class="field"><label for="patient-birthdate">Дата народження</label><input id="patient-birthdate" class="input" type="date"></div><div class="field"><label for="patient-city">Місто</label><input id="patient-city" class="input" placeholder="Київ"></div><div class="field"><label for="patient-gender">Стать</label><select id="patient-gender" class="input"><option>Оберіть</option><option>Жіноча</option><option>Чоловіча</option><option>Не вказувати</option></select></div><div class="field"><label for="patient-specialty">Потрібний спеціаліст</label><input id="patient-specialty" class="input" placeholder="Кардіолог, психолог, невролог"></div><div class="field full"><label for="patient-files">Медичні файли</label><input id="patient-files" class="input" type="file" multiple></div><div class="field full"><label for="patient-reason">Причина звернення</label><textarea id="patient-reason" class="input" placeholder="Опишіть симптоми, питання до лікаря або мету консультації"></textarea></div></div><div class="notice">Після реєстрації ви зможете обрати лікаря, забронювати час консультації та додати медичні документи в кабінеті пацієнта.</div><div class="form-actions"><button class="btn outline" data-screen-link="register">Назад до вибору ролі</button><button class="btn primary" data-screen-link="patient">Створити акаунт</button></div></section></div></section>
   </main>
+
+  <style>
+    html{
+      -webkit-text-size-adjust:100%;
+      text-size-adjust:100%;
+    }
+    body{
+      overflow-x:hidden;
+      padding-left:env(safe-area-inset-left);
+      padding-right:env(safe-area-inset-right);
+    }
+    img,svg,video,canvas{
+      max-width:100%;
+      height:auto;
+    }
+    button,a,input,select,textarea{
+      -webkit-tap-highlight-color:transparent;
+    }
+    .btn,.tab,.tab2,.slot,.day.ok,.cday,.sideitem{
+      min-height:44px;
+    }
+    .input,input,select,textarea{
+      font-size:16px;
+    }
+    .tabs,.links,.tabs2,.slots,.meta,.badges{
+      -webkit-overflow-scrolling:touch;
+    }
+    .topbar{
+      padding-top:max(10px,env(safe-area-inset-top));
+    }
+    .screen{
+      min-width:0;
+    }
+    .container,.panel,.floating,.cat,.doc,.result,.filter,.appointment,.metric,.record,.usercard,.earnings,.payment-row,.doc-file-row,.pat-row,.schedule-apt{
+      min-width:0;
+    }
+    .name,.spec,.sub,.panel p,.summary-line span,.summary-line b{
+      overflow-wrap:anywhere;
+    }
+    .hero-search input,.input{
+      min-width:0;
+    }
+    .tabs2{
+      overflow-x:auto;
+      scrollbar-width:none;
+    }
+    .tabs2::-webkit-scrollbar{
+      display:none;
+    }
+    @media (max-width:1100px){
+      .topbar{
+        gap:10px;
+      }
+      .tagline{
+        display:none;
+      }
+      .tabs{
+        flex:1;
+      }
+      .hero-grid{
+        grid-template-columns:minmax(0,1fr) minmax(320px,390px);
+        gap:28px;
+      }
+      .grid4{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+      .dashboard{
+        grid-template-columns:220px minmax(0,1fr);
+      }
+    }
+    @media (max-width:920px){
+      .screen{
+        padding-top:54px;
+      }
+      .nav{
+        top:54px;
+        height:auto;
+        min-height:58px;
+        align-items:center;
+        gap:12px;
+        padding:9px 18px;
+      }
+      .navright{
+        gap:8px;
+      }
+      .hero-grid{
+        grid-template-columns:1fr;
+        min-height:auto;
+        padding:58px 0 42px;
+      }
+      .floating{
+        display:block;
+      }
+      .profile-head{
+        align-items:center;
+        flex-wrap:wrap;
+        padding-bottom:22px;
+      }
+      .big-avatar{
+        margin-bottom:0;
+      }
+      .profile-info,.profile-actions{
+        padding-bottom:0;
+      }
+      .profile-actions{
+        width:100%;
+      }
+      .profile-actions .btn{
+        flex:1;
+      }
+      .layout,.profile-body,.dashboard,.booking-grid{
+        grid-template-columns:1fr;
+      }
+      .sidebar,.filter,.booking{
+        position:static;
+      }
+      .sidebar > div:last-child{
+        display:flex;
+        overflow-x:auto;
+        padding-bottom:4px;
+        gap:8px;
+      }
+      .sideitem,.sideitem:first-child,.sideitem:last-child{
+        border-radius:999px;
+        flex:0 0 auto;
+      }
+      .usercard{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:12px;
+        text-align:left;
+      }
+      .usercard .avatar,.usercard .doctor-avatar-img{
+        margin:0 !important;
+      }
+      .metrics,.records{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+      .payment-row,.doc-file-row,.pat-row,.schedule-apt{
+        align-items:flex-start;
+        flex-wrap:wrap;
+      }
+      .payment-row .pay-amount{
+        margin-left:0;
+      }
+    }
+    @media (max-width:700px){
+      :root{
+        --r:18px;
+      }
+      .topbar{
+        align-items:flex-start;
+        flex-direction:column;
+        padding:8px 12px 10px;
+      }
+      .brand{
+        font-size:16px;
+        line-height:1.1;
+      }
+      .tabs{
+        width:100%;
+        padding-bottom:2px;
+      }
+      .tab{
+        padding:8px 12px;
+        font-size:12px;
+      }
+      .screen{
+        padding-top:91px;
+      }
+      .nav{
+        top:91px;
+        padding:10px 14px;
+        flex-wrap:wrap;
+      }
+      .logo{
+        font-size:18px;
+      }
+      .links{
+        order:3;
+        width:100%;
+        overflow-x:auto;
+        padding-bottom:2px;
+      }
+      .links a{
+        display:block;
+        white-space:nowrap;
+      }
+      .navright{
+        margin-left:auto;
+      }
+      .navright .btn{
+        padding:9px 13px;
+      }
+      .container{
+        padding:0 14px;
+      }
+      .section{
+        padding:36px 0;
+      }
+      .hero:before,.hero:after{
+        opacity:.55;
+      }
+      .hero-grid{
+        padding:36px 0 32px;
+      }
+      .eyebrow{
+        align-items:flex-start;
+        border-radius:16px;
+        font-size:12px;
+        line-height:1.45;
+      }
+      .h1{
+        font-size:clamp(34px,12vw,44px);
+        letter-spacing:-.03em;
+      }
+      .lead{
+        font-size:15px;
+      }
+      .hero-search{
+        margin:22px 0 14px;
+      }
+      .pill,.badge,.slot{
+        font-size:12px;
+      }
+      .floating,.panel,.cat,.doc,.filter,.result,.appointment,.metric,.record,.usercard,.earnings{
+        border-radius:18px;
+      }
+      .floating,.panel{
+        padding:18px;
+      }
+      .doctor-row{
+        align-items:flex-start;
+        padding:10px 0;
+      }
+      .doctor-row .price{
+        margin-left:0;
+      }
+      .stats{
+        grid-template-columns:1fr;
+      }
+      .stat{
+        border-right:0;
+        border-bottom:1px solid var(--border);
+      }
+      .stat:last-child{
+        border-bottom:0;
+      }
+      .grid4,.grid3,.metrics,.records,.strip-grid,.register-grid,.form-grid{
+        grid-template-columns:1fr;
+      }
+      .doc-top,.doc-bottom{
+        align-items:flex-start;
+      }
+      .doc-bottom{
+        flex-direction:column;
+        gap:12px;
+      }
+      .doc-bottom .btn{
+        width:100%;
+      }
+      .search-hero{
+        padding:24px 0;
+      }
+      .filter{
+        padding:16px;
+      }
+      .result{
+        grid-template-columns:52px minmax(0,1fr);
+        gap:12px;
+        padding:16px;
+      }
+      .result > div:last-child{
+        grid-column:1/-1;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        text-align:left !important;
+        gap:12px;
+      }
+      .result > div:last-child .btn{
+        margin-top:0 !important;
+      }
+      .meta{
+        gap:8px;
+      }
+      .meta span{
+        width:100%;
+      }
+      .profile-hero{
+        padding:28px 0 0;
+      }
+      .profile-head{
+        display:grid;
+        grid-template-columns:74px minmax(0,1fr);
+        gap:14px;
+      }
+      .big-avatar{
+        width:74px;
+        height:74px;
+        font-size:24px;
+      }
+      .profile-info h1{
+        font-size:25px;
+      }
+      .profile-actions{
+        grid-column:1/-1;
+      }
+      .tabs2{
+        gap:6px;
+      }
+      .tab2{
+        flex:0 0 auto;
+        white-space:nowrap;
+      }
+      .calendar,.fullcal,.cal-grid{
+        gap:4px;
+      }
+      .day,.cday,.cal-day{
+        min-width:0;
+        font-size:11px;
+      }
+      .times,.pay{
+        grid-template-columns:1fr;
+      }
+      .dashboard,.booking-wrap{
+        margin-top:18px;
+      }
+      .appointment{
+        grid-template-columns:48px minmax(0,1fr);
+        gap:12px;
+        padding:14px;
+      }
+      .appointment > .avatar{
+        grid-row:1;
+      }
+      .appointment > button{
+        grid-column:1/-1;
+        width:100%;
+      }
+      .datebox{
+        padding:7px;
+      }
+      .records .icon{
+        width:42px;
+        height:42px;
+      }
+      .earnings{
+        padding:22px;
+      }
+      .earnings b{
+        font-size:32px;
+      }
+      .bars{
+        height:96px;
+        padding:14px;
+      }
+      .progress{
+        overflow-x:auto;
+        gap:10px;
+        padding:4px 2px 10px;
+        margin-bottom:18px;
+      }
+      .step{
+        flex:0 0 104px;
+        font-size:12px;
+      }
+      .booking-wrap{
+        padding-bottom:24px;
+      }
+      .summary-line{
+        gap:12px;
+      }
+      .form-actions{
+        flex-direction:column;
+      }
+      .form-actions .btn{
+        width:100%;
+      }
+      .notice{
+        border-radius:14px;
+      }
+      .payment-row .pay-status{
+        margin-right:0 !important;
+      }
+    }
+    @media (max-width:420px){
+      .topbar{
+        padding-left:10px;
+        padding-right:10px;
+      }
+      .screen{
+        padding-top:94px;
+      }
+      .nav{
+        top:94px;
+      }
+      .container{
+        padding:0 10px;
+      }
+      .title{
+        font-size:26px;
+      }
+      .h1{
+        font-size:33px;
+      }
+      .btn{
+        padding-left:14px;
+        padding-right:14px;
+      }
+      .avatar{
+        width:46px;
+        height:46px;
+        font-size:13px;
+      }
+      .profile-actions{
+        flex-direction:column;
+      }
+      .usercard{
+        align-items:flex-start;
+      }
+      .payment-row,.doc-file-row,.pat-row,.schedule-apt{
+        display:grid;
+        grid-template-columns:auto minmax(0,1fr);
+      }
+      .payment-row .pay-status,.payment-row .pay-amount,.doc-file-row .pay-status{
+        grid-column:1/-1;
+        justify-self:start;
+      }
+      .fullcal{
+        gap:3px;
+      }
+      .cday{
+        border-radius:9px;
+        font-size:11px;
+      }
+    }
+    @supports not (aspect-ratio:1){
+      .day,.cday,.cal-day{
+        min-height:38px;
+      }
+    }
+  </style>
 
   <script>
     const buttons=[...document.querySelectorAll('.tab')];
